@@ -1,11 +1,37 @@
-import Heading from "../components/Heading";
-import Paragraph from "../components/Paragraph";
+"use client";
 
-const Home = () => {
+import { useEffect, useState } from "react";
+
+const HomePage = () => {
+  const [artists, setArtists] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    try {
+      fetch("/api/artists")
+        .then((res) => res.json())
+        .then((data) => {
+          setArtists(data.artists);
+          setIsLoading(false);
+        });
+    } catch (error) {
+      setError(error);
+    }
+  }, []);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading artists</p>;
+
+  //console.log({ artists });
+
   return (
     <div>
-      <h1>Homepage</h1>
+      {artists.map((artist) => {
+        return <h1 key={artist.id}>{artist.name}</h1>;
+      })}
     </div>
   );
 };
-export default Home;
+
+export default HomePage;
