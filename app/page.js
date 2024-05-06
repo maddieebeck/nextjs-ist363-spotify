@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import Showcase from "../components/custom/Showcase";
+
 const HomePage = () => {
   const [artists, setArtists] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -26,11 +28,9 @@ const HomePage = () => {
   //console.log({ artists });
 
   return (
-    <div>
-      {artists.map((artist) => {
-        return <h1 key={artist.id}>{artist.name}</h1>;
-      })}
-    </div>
+    <main>
+      <Showcase />
+    </main>
   );
 };
 
