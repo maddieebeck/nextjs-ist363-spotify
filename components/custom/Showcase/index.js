@@ -1,41 +1,56 @@
-import Container from "../../layout/Container";
-import Row from "../../layout/Row";
-import Col from "../../layout/Col";
+import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+
+import ShowcaseImages from "./Images";
+import ShowcaseContent from "./Content";
+import ShowcaseExpandedContent from "./ExpandedContent";
 
 import styles from "./Showcase.module.scss";
 
-const Showcase = () => {
+const Showcase = ({ items }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [albums, setAlbums] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    //console.log("useEffect for showcase");
+    //if (items.length > 0) {
+    if (albums.length > 0) {
+      try {
+        fetch(`/api/albums?id=${items[activeIndex].id}`)
+          .then((res) => res.json())
+          .then((data) => {
+            setAlbums(data.items);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [activeIndex]);
+
+  console.log({ albums });
+
   return (
     <div className={styles.showcase}>
-      <div className={styles.showcase__images}>image goes here</div>
-      <div className={styles.showcase__content}>
-        <Container>
-          <Row alignItems="flex-end" paddingBottom={2}>
-            <Col md={1}>
-              <span className={styles.showcase__counter}>01/10</span>
-            </Col>
-            <Col xs={3} md={5}>
-              <span className={styles.showcase__number}>1</span>
-            </Col>
-            <Col xs={9} md={6}>
-              <h2 className={styles.showcase__artist}>Taylor Swift</h2>
-            </Col>
-          </Row>
-          <Row paddingBottom={2} paddingTop={2} borderTop={1}>
-            <Col md={1}>
-              <Row justifyContent="space-between">
-                <button>prev</button>
-                <button>next</button>
-              </Row>
-            </Col>
-            <Col md={5}>latest releases</Col>
-            <Col md={6}>
-              <button>watch music video</button>
-              <button>view artist page</button>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <AnimatePresence>
+        <ShowcaseImages
+          items={items}
+          activeIndex={activeIndex}
+          isExpanded={isExpanded}
+        />
+        {!isExpanded ? (
+          <ShowcaseContent
+            items={items}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+            latestRelease={albums.length > 0 ? albums[0] : null}
+            isExpanded={isExpanded}
+            setIsExpanded={setIsExpanded}
+          />
+        ) : (
+          <ShowcaseExpandedContent items={items} activeIndex={activeIndex} />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
