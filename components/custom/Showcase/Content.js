@@ -76,12 +76,14 @@ const ShowcaseContent = ({
             <Row justifyContent="space-between">
               <ButtonUI
                 icon="faAngleLeft"
+                disabled={activeIndex === 0}
                 clickHandler={() => {
                   setActiveIndex(activeIndex <= 0 ? 0 : activeIndex - 1);
                 }}
               />
               <ButtonUI
                 icon="faAngleRight"
+                disabled={activeIndex === items.length - 1}
                 clickHandler={() => {
                   setActiveIndex(
                     activeIndex >= items.length - 1
@@ -116,6 +118,7 @@ const ShowcaseContent = ({
               </div>
             </Col>
           )}
+
           <Col md={6} textAlign="right">
             <ButtonUI
               label="View artist page"

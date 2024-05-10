@@ -4,6 +4,7 @@ import {
   faAngleRight,
   faArrowRight,
   faAngleDown,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 const icons = {
@@ -11,6 +12,7 @@ const icons = {
   faAngleRight: faAngleRight,
   faArrowRight: faArrowRight,
   faAngleDown: faAngleDown,
+  faXmark: faXmark,
 };
 
 const Icon = ({ icon }) => {

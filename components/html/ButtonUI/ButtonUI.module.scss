@@ -4,7 +4,7 @@
   background-color: vars.$color__brand;
   height: 3rem;
   border: 0;
-  padding: 0 1.5rem;
+  padding: 1rem;
   font-family: vars.$font__condensed;
   font-size: 1rem;
   font-weight: bold;
@@ -14,4 +14,24 @@
   justify-content: center;
   gap: 1rem;
   border: solid 1px black;
+  cursor: pointer;
+  transition: all 0.5s;
+  &.label {
+    padding: 1rem 1.5rem;
+  }
+  &.close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    color: white;
+    border: none;
+    :hover {
+      color: vars.$color__brand;
+    }
+  }
+  &.disabled {
+    opacity: 0.25;
+    pointer-events: none;
+  }
 }

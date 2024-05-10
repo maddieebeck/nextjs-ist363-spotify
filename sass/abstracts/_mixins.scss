@@ -54,8 +54,9 @@
 
 @mixin generateAlignItemsClasses() {
   $values: stretch, flex-start, flex-end, center, baseline, initial, inherit;
+
   @each $value in $values {
-    &.align-items-#{value} {
+    &.align-items-#{$value} {
       align-items: $value;
     }
   }
@@ -97,7 +98,7 @@
   @each $side in $sides {
     @for $i from 1 through 6 {
       &.padding-#{$side}-#{$i} {
-        padding-#{$side}: #{$side}rem;
+        padding-#{$side}: #{$i}rem;
       }
     }
   }
