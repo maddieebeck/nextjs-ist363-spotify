@@ -3,13 +3,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Paragraph from "../../html/Paragraph";
 
-const Slider = ({ relatedArtists }) => {
+const Slider = ({ items }) => {
+  console.log(items);
   return (
     <ul>
-      <li>
-        <Image />
-        <Paragraph>related artist name</Paragraph>
-      </li>
+      {items?.map((item, index) => {
+        return (
+          <li key={index}>
+            <Paragraph>{item.name}</Paragraph>
+          </li>
+        );
+      })}
     </ul>
   );
 };

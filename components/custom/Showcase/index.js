@@ -14,7 +14,7 @@ const Showcase = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [albums, setAlbums] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [relatedArtists, setRelatedArtists] = useState();
+  const [relatedArtists, setRelatedArtists] = useState([]);
 
   useEffect(() => {
     //console.log("useEffect for showcase");
@@ -32,7 +32,7 @@ const Showcase = ({ items }) => {
     }
   }, [activeIndex, items]);
 
-  console.log({ albums });
+  //console.log({ albums });
 
   useEffect(() => {
     if (items.length > 0) {
@@ -40,7 +40,8 @@ const Showcase = ({ items }) => {
         fetch(`/api/related?id=${items[activeIndex].id}`)
           .then((res) => res.json())
           .then((data) => {
-            setRelatedArtists(data.items);
+            console.log({ data });
+            setRelatedArtists(data.artists);
           });
       } catch (error) {
         console.log(error);
@@ -70,6 +71,7 @@ const Showcase = ({ items }) => {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
             latestRelease={albums.length > 0 ? albums[0] : null}
+            genre={items.genres}
             isExpanded={isExpanded}
             setIsExpanded={setIsExpanded}
           />
