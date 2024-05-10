@@ -3,21 +3,6 @@ import { getAccessToken } from "../../../lib/spotify";
 export async function GET() {
   const token = await getAccessToken();
 
-  // const artists = [
-  //   {
-  //     name: "Taylor Swift",
-  //     spotify_id: "06HL4z0CvFAxyc27GXpf02",
-  //   },
-  //   {
-  //     name: "Beyoncé",
-  //     spotify_id: "6vWDO969PvNqNYHIOW5v0m",
-  //   },
-  //   {
-  //     name: "Ariana Grande",
-  //     spotify_id: "66CXWjxzNUsdJxJ2JdwvnR",
-  //   },
-  // ];
-
   const artists = [
     {
       name: "Chappell Roan",
@@ -75,6 +60,6 @@ export async function GET() {
   );
 
   const artistsData = await apiResponse.json();
-
+  console.log({ artistsData });
   return new Response(JSON.stringify(artistsData));
 }

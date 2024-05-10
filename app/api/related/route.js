@@ -4,7 +4,7 @@ export async function GET(request) {
   const urlParams = request.nextUrl.searchParams;
   const id = urlParams.get("id");
 
-  const token = await getAccessToken();
+  const token = await getAccessToken(true);
 
   const apiResponse = await fetch(
     `https://api.spotify.com/v1/artists/${id}/related-artists`,

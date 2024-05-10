@@ -76,12 +76,8 @@ const ShowcaseExpandedContent = ({
           <Container>
             <Heading level={2} marginBottom={2} marginTop={4}>
               Albums
-              <br />
-              <br />
             </Heading>
             <Grid items={albums} />
-            <hr />
-            <br />
             <Heading level={2}>Related Artists</Heading>
             <Slider items={relatedArtists} />
           </Container>

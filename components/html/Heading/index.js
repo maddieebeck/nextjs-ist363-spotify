@@ -15,11 +15,11 @@ const Heading = ({
 
   const headingClasses = cx({
     heading: true,
-    [`heading--${level}`]: level,
-    [`margin--top--${marginTop}`]: marginTop,
-    [`margin--right--${marginRight}`]: marginRight,
-    [`margin--bottom--${marginBottom}`]: marginBottom,
-    [`margin--left--${marginLeft}`]: marginLeft,
+    [`heading-${level}`]: level,
+    [`margin-top--${marginTop}`]: marginTop,
+    [`margin-right--${marginRight}`]: marginRight,
+    [`margin-bottom--${marginBottom}`]: marginBottom,
+    [`margin-left--${marginLeft}`]: marginLeft,
   });
 
   return <Tag className={headingClasses}>{children}</Tag>;
