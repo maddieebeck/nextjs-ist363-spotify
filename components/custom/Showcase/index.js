@@ -32,7 +32,7 @@ const Showcase = ({ items }) => {
     }
   }, [activeIndex, items]);
 
-  //console.log({ albums });
+  console.log({ items });
 
   useEffect(() => {
     if (items.length > 0) {
@@ -59,11 +59,13 @@ const Showcase = ({ items }) => {
   return (
     <div className={showcaseClasses}>
       <AnimatePresence>
-        <ShowcaseImages
-          items={items}
-          activeIndex={activeIndex}
-          isExpanded={isExpanded}
-        />
+        {items?.length > 0 && (
+          <ShowcaseImages
+            items={items}
+            activeIndex={activeIndex}
+            isExpanded={isExpanded}
+          />
+        )}
         {!isExpanded ? (
           <ShowcaseContent
             key="top"
@@ -71,7 +73,7 @@ const Showcase = ({ items }) => {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
             latestRelease={albums.length > 0 ? albums[0] : null}
-            genre={items.genres}
+            //genre={items.genres}
             isExpanded={isExpanded}
             setIsExpanded={setIsExpanded}
           />

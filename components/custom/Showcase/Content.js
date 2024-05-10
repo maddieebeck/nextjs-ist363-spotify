@@ -44,7 +44,7 @@ const ShowcaseContent = ({
         <Row alignItems="flex-end" paddingBottom={2}>
           <Col md={1}>
             <span className={styles.showcase__counter}>
-              {activeIndex + 1}/{items.length}
+              {activeIndex + 1}/{items?.length}
             </span>
           </Col>
           <Col xs={3} md={5}>
