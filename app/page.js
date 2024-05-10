@@ -25,7 +25,7 @@ const HomePage = () => {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading artists</p>;
 
-  console.log({ artists });
+  //console.log({ artists });
 
   return <main>{artists.length > 0 && <Showcase items={artists} />}</main>;
 };
